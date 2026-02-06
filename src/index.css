@@ -47,11 +47,13 @@ header,
 }
 
 .container-main {
-    width: 80rem;
+    width: 80vw;
+    max-width: 80rem;
+    margin: 0 5rem;
     gap: 2rem;
     align-items: center;
     background-color: var(--surface-1);
-    padding: 4rem 2rem;
+    padding: 4rem 6rem;
     border-radius: 3rem;
     border: 1px solid var(--surface-2);
     box-shadow: var(--shadow-m);
@@ -76,7 +78,7 @@ header,
 
     & .container-ul {
         gap: 1rem;
-        width: 60rem;
+        width: 100%;
         flex: 1 1 auto;
 
         & .todo-ul li,
@@ -138,10 +140,11 @@ header,
 
         & .todo-ul {
             gap: 1rem;
-            padding-right: 0.5rem;
+            overflow-wrap: anywhere;
 
             & li {
                 justify-content: space-between;
+                align-items: center;
                 gap: 1rem;
                 padding: 0.6rem 0.8rem;
                 border-radius: 1rem;
@@ -178,6 +181,7 @@ header,
                         display: inline-block;
                         cursor: pointer;
                         font-family: inherit;
+                        flex-shrink: 0;
 
                         &:hover {
                             box-shadow: 0 0 10px var(--accent-cyan);
@@ -202,15 +206,23 @@ header,
                 & .buttons-li-container {
                     display: flex;
                     opacity: 0;
+                    margin-right: 0.6rem;
+
+                    & .menu-mobile-button,
+                    .menu-mobile-container {
+                        display: none;
+                    }
 
                     & .button-li {
                         background-color: transparent;
-                        padding: 0.8rem;
+                        padding: 1rem 0.8rem 0.6rem 0.8rem;
                         cursor: pointer;
                         color: var(--text-primary);
                         font-weight: 600;
                         border-radius: 2rem;
                         background-color: var(--surface-1);
+                        font-size: 1.8rem;
+                        align-self: center;
 
                         &.li-delete {
                             border: 2px solid var(--danger);

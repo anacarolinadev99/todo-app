@@ -1,0 +1,24 @@
+@media all and (min-width: 30em) {
+    html {
+        font-size: 56.25%;
+    }
+
+    .container-main {
+        & .container-ul {
+            & .todo-ul {
+                & li {
+                    padding: 0.6rem 0.8rem;
+                    min-height: 5rem;
+                    & .buttons-li-container {
+                        position: relative;
+                        opacity: 1;
+
+                        & .button-li {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

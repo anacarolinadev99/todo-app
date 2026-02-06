@@ -1,0 +1,36 @@
+@media all and (min-width: 64em) {
+    html {
+        font-size: 62.5%;
+    }
+
+    .container-main {
+        & .container-ul {
+            & .todo-ul {
+                & li {
+                    & .buttons-li-container {
+                        position: relative;
+                        display: flex;
+                        opacity: 0;
+
+                        & .menu-mobile-button,
+                        .menu-mobile-container {
+                            display: none;
+                        }
+
+                        & .button-li {
+                            display: flex;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
+            & .container-input {
+                & .container-input-button {
+                    flex-direction: row;
+                    align-items: stretch;
+                }
+            }
+        }
+    }
+}

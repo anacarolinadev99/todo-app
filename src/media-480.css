@@ -1,0 +1,115 @@
+@media all and (min-width: 22.5em) {
+    html {
+        font-size: 50%;
+    }
+
+    .container-main {
+        padding: 2rem;
+
+        & .container-ul {
+            & .todo-ul {
+                & li {
+                    padding: 0;
+                    & .task-container {
+                        & input[type='checkbox'] {
+                            width: 14px;
+                            height: 14px;
+                            border: 1px solid var(--color-primary);
+                        }
+                    }
+
+                    & .buttons-li-container {
+                        opacity: 1;
+                        position: relative;
+
+                        & .button-li {
+                            display: none;
+                        }
+                        & .menu-mobile-button {
+                            padding-top: 0.4rem;
+                            width: 4rem;
+                            height: 4rem;
+                            display: flex;
+                            font-size: 2.5rem;
+                            justify-content: center;
+                            align-items: center;
+                            margin-top: 0.5rem;
+                            margin-right: 0.5rem;
+                            border-radius: 1rem;
+                            background-color: var(--surface-2);
+                            color: var(--text-primary);
+                            border: 1px solid var(--accent-cyan);
+                            position: relative;
+
+                            &.open {
+                                pointer-events: auto;
+                                z-index: 11;
+                            }
+                        }
+                        & .menu-mobile-container {
+                            opacity: 0;
+                            position: absolute;
+                            z-index: 10;
+                            background-color: rgba(0, 0, 0, 0.507);
+                            backdrop-filter: blur(10px);
+                            border: 1px solid var(--accent-cyan);
+                            top: 0;
+                            right: 0;
+                            border-radius: 1rem;
+                            width: 1rem;
+                            max-height: 0;
+                            padding: 0.8rem;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            gap: 0.8rem;
+                            transition:
+                                width 0.5s ease,
+                                max-height 0.5s ease 0.5s,
+                                opacity 0.5s;
+
+                            &.open {
+                                opacity: 1;
+                                width: 14rem;
+                                max-height: fit-content;
+                            }
+
+                            & .button-mobile {
+                                display: none;
+                                opacity: 0;
+                                background-color: transparent;
+                                color: inherit;
+                                border: none;
+                                font-family: inherit;
+                                font-size: 1.4rem;
+                                padding: 0.8rem 1rem;
+                                font-weight: 600;
+                                border: 1px solid;
+                                border-radius: 1rem;
+                                transition: opacity 0.2s 0.6s;
+
+                                &.open {
+                                    display: flex;
+                                    opacity: 1;
+                                }
+
+                                &.mobile-delete {
+                                    border-color: var(--danger);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            & .container-input {
+                & .add-button {
+                    width: fit-content;
+                }
+                & .container-input-button {
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
