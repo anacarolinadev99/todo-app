@@ -2,7 +2,7 @@ import React from 'react';
 
 export function InputRadio({ name, value, label, checked, onChange }) {
     return (
-        <div>
+        <div className="filter-item">
             <input
                 type="radio"
                 id={`filter-${value}`}

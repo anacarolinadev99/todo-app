@@ -4,7 +4,7 @@ import { UlContainer } from './components/UlContainer';
 
 export function App() {
     return (
-        <div>
+        <div className="container-main">
             <Header />
             <UlContainer />
         </div>

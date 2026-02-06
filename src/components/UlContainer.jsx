@@ -28,8 +28,27 @@ export function UlContainer() {
     //Filtro selecionado
     const [filterSelected, setFilterSelected] = useState('all');
 
+    //Estado da mensagem caso lista vazia
+    const [message, setMessage] = useState(() => {
+        if (filteredTodoList.length < 1 && filterSelected === 'all') {
+            return 'Lista de tarefas vazia, adicione uma nova tarefa';
+        } else if (
+            filteredTodoList.length < 1 &&
+            filterSelected === 'completed'
+        ) {
+            return 'Sem tarefas completas';
+        } else if (
+            filteredTodoList.length < 1 &&
+            filterSelected === 'pendent'
+        ) {
+            return 'Sem tarefas pendentes';
+        } else {
+            return '';
+        }
+    });
+
+    //Função para alterar o estado de uma tarefa pelo id
     const toggleTodo = (id) => {
-        //Função para alterar o estado de uma tarefa pelo id
         setTodoList((prev) =>
             prev.map((todo) =>
                 todo.id === id
@@ -39,24 +58,24 @@ export function UlContainer() {
         );
     };
 
+    //Função para adicionar uma tarefa nova
     const addTodo = (task) => {
-        //Função para adicionar uma tarefa nova
         const newtodo = { id: Date.now(), task: task, isCompleted: false };
         setTodoList((prev) => [...prev, newtodo]);
     };
 
+    //Função para deletar um item da lista de ToDos.
     const deleteTodo = (id) => {
-        //Função para deletar um item da lista de ToDos.
         setTodoList((prev) => prev.filter((todo) => todo.id !== id));
     };
 
+    //Salva a lista no localStorage a cada alteração
     useEffect(() => {
-        //Salva a lista no localStorage a cada alteração
         localStorage.setItem('ToDoList', JSON.stringify(todoList));
     }, [todoList]);
 
+    //Filtra a lista de acordo com o elemento selecionado no filtro
     useEffect(() => {
-        //Filtra a lista de acordo com o elemento selecionado no filtro
         if (filterSelected === 'completed') {
             const newListFiltered = todoList.filter(
                 (todo) => todo.isCompleted === true,
@@ -74,41 +93,69 @@ export function UlContainer() {
         setfilteredTodoList(todoList);
     }, [filterSelected, todoList]);
 
+    //Contador de tarefas pendentes, altera quando a todo muda
     useEffect(() => {
         const count = todoList.filter((todo) => !todo.isCompleted).length;
         setTasksNotFinished(count);
     }, [todoList]);
 
+    //Altera o valor da mensagem quando a lista filtrada muda
+    useEffect(() => {
+        if (filteredTodoList.length < 1 && filterSelected === 'all') {
+            return setMessage(
+                'Lista de tarefas vazia, adicione uma nova tarefa',
+            );
+        } else if (
+            filteredTodoList.length < 1 &&
+            filterSelected === 'completed'
+        ) {
+            return setMessage('Sem tarefas completas');
+        } else if (
+            filteredTodoList.length < 1 &&
+            filterSelected === 'pendent'
+        ) {
+            return setMessage('Sem tarefas pendentes');
+        } else {
+            return setMessage('');
+        }
+    }, [filteredTodoList]);
+
     return (
-        <div>
+        <div className="container-ul">
             <InputContainer addtodo={addTodo} />
-            <ul>
-                {filteredTodoList.map((todo) => (
-                    <LiItem
-                        key={todo.id}
-                        todo={todo}
-                        toggleTodo={toggleTodo}
-                        deleteTodo={deleteTodo}
-                    />
-                ))}
+            <ul className="todo-ul">
+                {filteredTodoList.length > 0 ? (
+                    filteredTodoList.map((todo) => (
+                        <LiItem
+                            key={todo.id}
+                            todo={todo}
+                            toggleTodo={toggleTodo}
+                            deleteTodo={deleteTodo}
+                        />
+                    ))
+                ) : (
+                    <span className="message-ul">{message}</span>
+                )}
             </ul>
-            <div>
-                {filters.map((filter) => (
-                    <InputRadio
-                        key={filter.value}
-                        name={'filterTodos'}
-                        value={filter.value}
-                        checked={filterSelected === filter.value}
-                        onChange={() => setFilterSelected(filter.value)}
-                        label={filter.label}
-                    />
-                ))}
-            </div>
-            <p>
-                {tasksNotFinished > 0
-                    ? `Tarefas restantes: ${tasksNotFinished}`
-                    : 'Você completou todas as tarefas'}
-            </p>
+            <footer>
+                <div className="container-filters">
+                    {filters.map((filter) => (
+                        <InputRadio
+                            key={filter.value}
+                            name={'filterTodos'}
+                            value={filter.value}
+                            checked={filterSelected === filter.value}
+                            onChange={() => setFilterSelected(filter.value)}
+                            label={filter.label}
+                        />
+                    ))}
+                </div>
+                <p className="counter">
+                    {tasksNotFinished > 0
+                        ? `Tarefas restantes: ${tasksNotFinished}`
+                        : 'Você completou todas as tarefas'}
+                </p>
+            </footer>
         </div>
     );
 }

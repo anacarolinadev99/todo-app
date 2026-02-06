@@ -5,10 +5,11 @@ export function Button({
     label = '',
     classList = '',
     onClick = () => {},
+    iconClass = '',
 }) {
     return (
         <button type={type} className={classList} onClick={onClick}>
-            {label}
+            {label ? label : iconClass && <i className={iconClass} />}
         </button>
     );
 }

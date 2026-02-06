@@ -14,14 +14,21 @@ export function InputContainer({ addtodo }) {
     };
 
     return (
-        <div>
+        <div className="container-input">
             <p>O que você precisa fazer hoje?</p>
-            <Input
-                placeholder="Nova tarefa..."
-                onChange={(e) => setTask(e.target.value)}
-                value={task}
-            />
-            <Button label="Adicionar" onClick={onClick} />
+            <div className="container-input-button">
+                <Input
+                    placeholder="Nova tarefa..."
+                    onChange={(e) => setTask(e.target.value)}
+                    value={task}
+                    classList="main-input"
+                />
+                <Button
+                    label="Adicionar"
+                    onClick={onClick}
+                    classList="add-button"
+                />
+            </div>
         </div>
     );
 }
