@@ -19,7 +19,7 @@ export function LiItem({ todo, toggleTodo, deleteTodo }) {
             <div className="buttons-li-container">
                 <Button
                     classList={`menu-mobile-button ${isOpen ? 'open' : 'closed'}`}
-                    iconClass={isOpen ? 'bi bi-x-lg' : 'bi bi-list'}
+                    iconClass={isOpen ? 'bi bi-x' : 'bi bi-three-dots-vertical'}
                     onClick={() => setIsOpen(!isOpen)}
                 />
                 <div

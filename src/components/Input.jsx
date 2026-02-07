@@ -7,6 +7,7 @@ export function Input({
     checked = false,
     onChange = () => {},
     value = '',
+    name = undefined,
 }) {
     return (
         <input
@@ -16,6 +17,7 @@ export function Input({
             onChange={onChange}
             checked={checked}
             value={value}
+            name={name}
         />
     );
 }

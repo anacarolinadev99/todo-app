@@ -1,24 +1,17 @@
-@media all and (min-width: 30em) {
+@media (min-width: 48em) {
     html {
         font-size: 56.25%;
     }
 
-    .container-main {
-        & .container-ul {
-            & .todo-ul {
-                & li {
-                    padding: 0.6rem 0.8rem;
-                    min-height: 5rem;
-                    & .buttons-li-container {
-                        position: relative;
-                        opacity: 1;
+    .container-input-button {
+        flex-direction: row;
 
-                        & .button-li {
-                            display: none;
-                        }
-                    }
-                }
-            }
+        & input[name='main-input'] {
+            flex: 1 1 0;
+        }
+
+        & button.add-button {
+            flex-shrink: 0;
         }
     }
 }

@@ -22,6 +22,7 @@ export function InputContainer({ addtodo }) {
                     onChange={(e) => setTask(e.target.value)}
                     value={task}
                     classList="main-input"
+                    name="main-input"
                 />
                 <Button
                     label="Adicionar"
