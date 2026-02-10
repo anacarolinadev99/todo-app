@@ -6,9 +6,15 @@ export function Button({
     classList = '',
     onClick = () => {},
     iconClass = '',
+    disbled = false,
 }) {
     return (
-        <button type={type} className={classList} onClick={onClick}>
+        <button
+            type={type}
+            className={classList}
+            onClick={onClick}
+            disabled={disbled}
+        >
             {label ? label : iconClass && <i className={iconClass} />}
         </button>
     );

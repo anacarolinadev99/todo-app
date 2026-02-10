@@ -69,6 +69,17 @@ export function UlContainer() {
         setTodoList((prev) => prev.filter((todo) => todo.id !== id));
     };
 
+    //Função para editar uma task na lista
+    const editTodo = (id, updateTask) => {
+        if (updateTask.trim() === '') return;
+
+        setTodoList((prev) =>
+            prev.map((todo) =>
+                todo.id === id ? { ...todo, task: updateTask } : todo,
+            ),
+        );
+    };
+
     //Salva a lista no localStorage a cada alteração
     useEffect(() => {
         localStorage.setItem('ToDoList', JSON.stringify(todoList));
@@ -131,6 +142,7 @@ export function UlContainer() {
                             todo={todo}
                             toggleTodo={toggleTodo}
                             deleteTodo={deleteTodo}
+                            editTodo={editTodo}
                         />
                     ))
                 ) : (
